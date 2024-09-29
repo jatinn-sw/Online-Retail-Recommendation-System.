@@ -10,9 +10,9 @@ The dataset used in this project is from the UCI Machine Learning Repository, wh
 ### Features
 - Data Preprocessing: Handles missing values and transforms data types for analysis.
 - Exploratory Data Analysis (EDA):
--- Top countries by the number of transactions.
--- Sales trends over time.
--- Popular products globally, by country, and by month.
+  - Top countries by the number of transactions.
+  - Sales trends over time.
+  - Popular products globally, by country, and by month.
 - Recommendation System:
--- Recommends top items based on global, country-wise, and month-wise trends.
--- Flexible function for generating recommendations based on user input (country or time).
+  - Recommends top items based on global, country-wise, and month-wise trends.
+  - Flexible function for generating recommendations based on user input (country or time).
