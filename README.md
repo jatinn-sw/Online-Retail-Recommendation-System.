@@ -1,52 +1,77 @@
-# Online Retail Recommendation System.
+# Online Retail Recommendation System
 
-## Overview
+This project focuses on building a recommendation system for an online retail store using two different approaches. The goal is to provide personalized product recommendations to customers based on their purchase history and behavior. The dataset used is the "Online Retail" dataset, which contains transactional data for an online retail store.
 
-This project explores two different approaches to building a recommendation system for an online retail dataset. The goal is to analyze historical purchase data and provide meaningful product recommendations to users. By leveraging machine learning techniques, this system aims to enhance user experience by suggesting relevant products, thereby improving customer engagement and increasing sales. The project is structured around two main approaches: collaborative filtering and content-based filtering, each offering distinct advantages in generating personalized recommendations. The results from these methods are compared to understand their strengths and limitations, with future enhancements planned to further refine the recommendation process. </br>
-</br>
-The two approaches implemented in this project are:
+## Dataset Information
+The dataset used in this project is from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Online+Retail), which contains:
+- **Transactions**: Customer purchases from an online retail store.
+- **Columns**:
+  - `InvoiceNo`: Invoice number (unique identifier for each transaction).
+  - `StockCode`: Product code (unique identifier for each product).
+  - `Description`: Product description.
+  - `Quantity`: Quantity of the product purchased.
+  - `InvoiceDate`: Date and time of the transaction.
+  - `UnitPrice`: Price of the product per unit.
+  - `CustomerID`: Unique identifier for each customer.
+  - `Country`: Country where the transaction occurred.
 
-1. Collaborative Filtering Approach
+## Project Overview
 
-2. Content-Based Filtering Approach
+The project is divided into two main approaches:
 
-### Dataset Information
-The dataset used in this project is from the UCI Machine Learning Repository, which contains:
-- Transactions: Customer purchases from an online retail store.
-- Columns: Invoice number, stock code, description, quantity, invoice date, unit price, customer ID, and country.
-  
-## Approach 1: Collaborative Filtering
+1. **Popularity-Based Recommendation System**
+2. **Item-to-Item and User-to-User Collaborative Filtering Recommendation System**
 
-### Methodology
+Each approach is implemented using Python and leverages libraries such as Pandas, Seaborn, Matplotlib, and Scikit-learn.
 
-- This approach leverages user-item interactions to make recommendations.
+## Approach 1: Popularity-Based Recommendation System
 
-- It relies on historical purchasing behavior to suggest products that similar users have bought.
+### Description
+This approach focuses on recommending products based on their overall popularity. The system identifies the most frequently purchased items globally, by country, and by month. It then provides recommendations based on these popular items.
 
-- Techniques used:
+### Key Steps:
+1. **Data Preprocessing**: 
+   - Load and clean the dataset.
+   - Handle missing values, especially in the `CustomerID` column.
+   - Convert the `InvoiceDate` to a datetime format.
 
-  - User-based and item-based collaborative filtering
+2. **Exploratory Data Analysis (EDA)**:
+   - Analyze the number of transactions by country.
+   - Visualize sales trends over time.
+   - Identify the most popular items globally and by country.
 
-  - Matrix factorization (SVD, ALS, etc.)
+3. **Recommendation Function**:
+   - The system provides recommendations based on global popularity, country-specific popularity, or monthly trends.
 
-  - Cosine similarity for similarity measurement
+### Example Usage:
+- **Global Recommendations**: Recommends the top 10 most popular items globally.
+- **Country-Specific Recommendations**: Recommends popular items for a specific country (e.g., United Kingdom).
+- **Monthly Recommendations**: Recommends popular items for a specific month (e.g., December 2011).
 
-Collaborative filtering is highly effective at capturing user preferences, as it analyzes interactions between users and items to generate personalized recommendations. It works particularly well in cases where users have overlapping purchase histories, allowing the system to identify meaningful patterns and suggest relevant products. Additionally, since this approach does not rely on product metadata, it can be applied across different domains without requiring extensive feature engineering.
+## Approach 2: Item-to-Item and User-to-User Collaborative Filtering Recommendation System
 
-## Approach 2: Content-Based Filtering
+### Description
+This approach uses collaborative filtering to recommend products. It includes two types of filtering:
+- **Item-to-Item Filtering**: Recommends items that are similar to the ones a user has already purchased.
+- **User-to-User Filtering**: Recommends items based on the purchase history of similar users.
 
-### Methodology
+### Key Steps:
+1. **Data Preprocessing**:
+   - Load and clean the dataset.
+   - Handle missing values in the `CustomerID` column.
+   - Create a customer-item matrix to represent purchases.
 
-- This approach recommends products based on their attributes rather than user interactions.
+2. **Item-to-Item Similarity**:
+   - Compute the cosine similarity between items based on customer purchase history.
+   - Generate recommendations for items similar to a given product.
 
-- It uses product metadata (e.g., category, description, price) to find similar items.
+3. **User-to-User Similarity**:
+   - Compute the cosine similarity between users based on their purchase history.
+   - Generate recommendations for a user based on the purchase history of similar users.
 
-- Techniques used:
+4. **Heatmap Visualization**:
+   - Visualize the item-to-item and user-to-user similarity matrices using heatmaps.
 
-  - TF-IDF and word embeddings for text-based features
-
-  - Cosine similarity for item comparison
-
-  - Feature engineering to enhance product representation
- 
-Content-based filtering is particularly beneficial for new users since it does not rely on prior interactions to generate recommendations. By focusing on product attributes, it can suggest items that closely match a user’s known preferences, even with limited historical data. This approach is also effective in recommending niche products, ensuring that users receive suggestions tailored to their specific interests. Furthermore, content-based filtering provides a level of transparency, as users can understand why a particular item is being recommended based on shared characteristics.
+### Example Usage:
+- **Item-to-Item Recommendations**: Given a product (e.g., StockCode `23150`), the system recommends similar items.
+- **User-to-User Recommendations**: Given a customer (e.g., CustomerID `12703`), the system recommends products based on the purchase history of similar users.
