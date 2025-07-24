@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Retail Recommender</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://img.icons8.com/fluency/48/online-store.png" alt="Logo">
+        </div>
+        <h1>Product Recommendations</h1>
+        <form id="recommend-form">
+            <label for="customer-id">Enter Customer ID:</label>
+            <input type="text" id="customer-id" name="customer-id" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <div class="loading-spinner" id="loading-spinner" style="display:none;"></div>
+        <div id="recommendations"></div>
+        <div class="error" id="error-message"></div>
+    </div>
+    <script src="/static/main.js"></script>
+</body>
+</html> 
